@@ -1,0 +1,161 @@
+﻿//////////////////////////////////////////////////////////////////////////
+// Misc
+
+https://docs.unrealengine.com/en-us/Engine/Deployment/BuildOperations
+https://wiki.unrealengine.com/How_to_package_your_game_with_commands (вроде как устарело, у меня не работает)
+
+[Engine]\Source\Programs\UnrealBuildTool\Configuration\UEBuildTarget.cs
+platform=Win32
+platform=Win64
+platform=Android
+platform=IOS
+platform=Mac
+platform=Linux
+...
+
+[Engine]\Source\Programs\UnrealBuildTool\Configuration\UEBuildTarget.cs
+...config=Debug
+...config=DebugGame
+...config=Development
+...config=Shipping
+...config=Test
+
+Information about params of command line:
+[Engine]\Source\Programs\AutomationTool\AutomationUtils\
+	ProjectParams.cs
+	DeploymentContext.cs
+	Automation.cs
+	...other
+
+#if PLATFORM_MAC
+	FString Executable = TEXT("RunUAT.command");
+#elif PLATFORM_LINUX
+	FString Executable = TEXT("RunUAT.sh");
+#else
+	FString Executable = TEXT("RunUAT.bat");
+#endif
+
+ATF (Android Texture Formats) (https://docs.unrealengine.com/en-us/Platforms/Android/Reference):
+- ATC
+- DXT
+- ETC1
+- ETC1a
+- ETC2
+- PVRTC
+- ASTC
+
+//////////////////////////////////////////////////////////////////////////
+// AutomationTool.exe
+
+"[UE4Root]/Engine/Binaries/DotNET/AutomationTool.exe" -help
+	Automation Help:
+	Executes scripted commands
+	AutomationTool.exe [-verbose] [-compileonly] [-p4] Command0 [-Arg0 -Arg1 -Arg2 ...] Command1 [-Arg0 -Arg1 ...] Command2 [-Arg0 ...] Commandn ... [EnvVar0=MyValue0 ... EnvVarn=MyValuen]
+	Parameters:
+	    -verbose                Enables verbose logging
+	    -nop4                   Disables Perforce functionality (default if not run on a build machine)
+	    -p4                     Enables Perforce functionality (default if run on a build machine)
+	    -compileonly            Does not run any commands, only compiles them
+	    -compile                Dynamically compiles all commands (otherwise assumes they are already built)
+	    -help                   Displays help
+	    -list                   Lists all available commands
+	    -submit                 Allows UAT command to submit changes
+	    -nosubmit               Prevents any submit attempts
+	    -nokill                 Does not kill any spawned processes on exit
+	    -ignorejunk             Prevents UBT from cleaning junk files
+	    -UseLocalBuildStorage   Allows you to use local storage for your root build storage dir (default of P:/Builds (on PC) is changed to Engine/Saved/LocalBuilds). Used for local testing.
+
+"[UE4Root]/Engine/Binaries/DotNET/AutomationTool.exe" -list
+	Available commands:
+	  AnalyzeThirdPartyLibs
+	  BlameKeyword
+	  BuildCommonTools
+	  ZipProjectUp
+	  BuildCookRun
+	  BuildDerivedDataCache
+	  BuildPhysX
+	  BuildPlugin
+	  BuildThirdPartyLibs
+	  CheckCsprojDotNetVersion
+	  CodeSurgery
+	  CopySharedCookedBuild
+	  CopyUAT
+	  CopyUsingDistillFileSet
+	  ExtractPaks
+	  FixupRedirects
+	  GenerateDSYM
+	  ListThirdPartySoftware
+	  RecordPerformance
+	  ReplaceAssetsUsingManifest
+	  IPhonePackager
+	  Localise
+	  MegaXGE
+	  SubmitUtilizationReportToEC
+	  TestP4_Info
+	  GitPullRequest
+	  TestFail
+	  TestSuccess
+	  TestMessage
+	  TestRecursion
+	  TestRecursionAuto
+	  TestMacZip
+	  TestP4_CreateChangelist
+	  TestP4_StrandCheckout
+	  TestP4_LabelDescription
+	  TestP4_ClientOps
+	  CleanDDC
+	  TestTestFarm
+	  TestArguments
+	  TestCombinePaths
+	  TestFileUtility
+	  TestLog
+	  TestChangeFileType
+	  TestGamePerf
+	  TestUATBuildProducts
+	  TestOSSCommands
+	  UBT
+	  SyncSource
+	  GenerateAutomationProject
+	  DumpBranch
+	  DebugSleep
+	  TestMcpConfigs
+	  TestBlame
+	  TestChanges
+	  TestKillAll
+	  TestCleanFormalBuilds
+	  TestStopProcess
+	  LookForOverlappingBuildProducts
+	  TestThreadedCopyFiles
+	  UpdateLocalVersion
+	  ZipUtils
+	  RebuildHLOD
+	  RebuildLightMaps
+	  ResavePackages
+	  ListMobileDevices
+	  StashTarget
+	  UnstashTarget
+	  BuildForUGS
+	  CheckBalancedMacros
+	  CheckForHacks
+	  CheckRestrictedFolders
+	  CheckTargetExists
+	  CheckXcodeVersion
+	  CleanAutomationReports
+	  CleanFormalBuilds
+	  CryptoKeys
+	  RebasePublicIncludePaths
+	  FinalizeInstalledBuild
+	  ResavePluginDescriptors
+	  ResaveProjectDescriptors
+	  SyncDDC
+	  SyncDepotPath
+	  UE4BuildUtilDummyBuildCommand
+	  BuildGraph
+	  Build
+	  TempStorageTests
+	  CleanTempStorage
+	  TestGauntlet
+	  RunUnreal
+	  CleanDevices
+	  RunEngineTests
+	  RunEditorTests
