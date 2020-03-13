@@ -52,82 +52,56 @@ rem if %platform%==Android set ATF= -cookflavor=%TypeAndroidTextureFormat%
 
 rem ## package
 
-echo Build %platform% %config% %ATF% %argDistribution%
-echo Build %platform% %config% %ATF% %argDistribution%>%logfile%
+echo Build %platform% %config% ForDistribution=%argDistribution% ATF=%ATF%
+echo Build %platform% %config% ForDistribution=%argDistribution% ATF=%ATF% >%logfile%
 echo     Start %DATE% %TIME%
 echo     Start %DATE% %TIME%>>%logfile%
-echo ******************************>>%logfile%
-@echo.>>%logfile%
+rem echo ******************************>>%logfile%
+rem @echo.>>%logfile%
 
-if %ATF%==ATC goto AndroidATC
-if %ATF%==DXT goto AndroidDXT
-if %ATF%==ETC1 goto AndroidETC1
-if %ATF%==ETC1a goto AndroidETC1a
-if %ATF%==ETC2 goto AndroidETC2
-if %ATF%==PVRTC goto AndroidPVRTC
-if %ATF%==ASTC goto AndroidASTC
-goto AndroidDefault
+if %ATF%==ATC goto AndroidATF
+if %ATF%==DXT goto AndroidATF
+if %ATF%==ETC1 goto AndroidATF
+if %ATF%==ETC1a goto AndroidATF
+if %ATF%==ETC2 goto AndroidATF
+if %ATF%==PVRTC goto AndroidATF
+if %ATF%==ASTC goto AndroidATF
+goto Default
 
-:AndroidDefault
-call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -build -utf8output>>%logfile%
+:Default
+rem call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -build -utf8output>>%logfile%
+call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -build -utf8output
 if not errorlevel 0 goto Exit_Failure
 goto Complete
 
-:AndroidATC
-call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -cookflavor=ATC -build -utf8output>>%logfile%
-if not errorlevel 0 goto Exit_Failure
-goto Complete
-
-:AndroidDXT
-call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -cookflavor=DXT -build -utf8output>>%logfile%
-if not errorlevel 0 goto Exit_Failure
-goto Complete
-
-:AndroidETC1
-call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -cookflavor=ETC1 -build -utf8output>>%logfile%
-if not errorlevel 0 goto Exit_Failure
-goto Complete
-
-:AndroidETC1a
-call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -cookflavor=ETC1a -build -utf8output>>%logfile%
-if not errorlevel 0 goto Exit_Failure
-goto Complete
-
-:AndroidETC2
-call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -cookflavor=ETC2 -build -utf8output>>%logfile%
-if not errorlevel 0 goto Exit_Failure
-goto Complete
-
-:AndroidPVRTC
-call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -cookflavor=PVRTC -build -utf8output>>%logfile%
-if not errorlevel 0 goto Exit_Failure
-goto Complete
-
-:AndroidASTC
-call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -cookflavor=ASTC -build -utf8output>>%logfile%
+:AndroidATF
+rem call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -cookflavor=%ATF% -build -utf8output>>%logfile%
+call %UATfile% BuildCookRun -nocompile -nocompileeditor -installed -nop4 -project=%projectfile% -cook -stage -archive -archivedirectory=%packagedir% -package -clientconfig=%config% -ue4exe=UE4Editor-Cmd.exe -clean -compressed -SkipCookingEditorContent -pak -prereqs%argDistribution% -nodebuginfo -targetplatform=%platform% -cookflavor=%ATF% -build -utf8output
 if not errorlevel 0 goto Exit_Failure
 goto Complete
 
 :Complete
-@echo.>>%logfile%
-echo ******************************>>%logfile%
+rem @echo.>>%logfile%
+rem echo ******************************>>%logfile%
 echo     End %DATE% %TIME%
 echo     End %DATE% %TIME%>>%logfile%
 
 goto Exit
 
 :Exit_Failure
-echo     %platform% %config% %ATF% %argDistribution% BUILD FAILED
-echo     %platform% %config% %ATF% %argDistribution% BUILD FAILED>>%logfile%
-echo     %platform% %config% %ATF% %argDistribution% BUILD FAILED>>%ResultLogFile%
+echo     %platform% %config% ForDistribution=%argDistribution% ATF=%ATF% BUILD FAILED
+echo     %platform% %config% ForDistribution=%argDistribution% ATF=%ATF% BUILD FAILED>>%logfile%
+echo     %platform% %config% ForDistribution=%argDistribution% ATF=%ATF% BUILD FAILED>>%ResultLogFile%
+echo     see log in "[AppData]/Unreal Engine/AutomationTool/Logs/">>%logfile%
 rem type GameBuild_Full.log
 rem pause
 exit /B 1
 
 :Exit
-echo     %platform% %config% %ATF% %argDistribution% BUILD SUCCESSFUL
-echo     %platform% %config% %ATF% %argDistribution% BUILD SUCCESSFUL>>%logfile%
-echo     %platform% %config% %ATF% %argDistribution% BUILD SUCCESSFUL>>%ResultLogFile%
+echo     %platform% %config% ForDistribution=%argDistribution% ATF=%ATF% BUILD SUCCESSFUL
+echo     %platform% %config% ForDistribution=%argDistribution% ATF=%ATF% BUILD SUCCESSFUL>>%logfile%
+echo     %platform% %config% ForDistribution=%argDistribution% ATF=%ATF% BUILD SUCCESSFUL>>%ResultLogFile%
+echo     see log in "[AppData]/Unreal Engine/AutomationTool/Logs/">>%logfile%
 rem type GameBuild_Full.log
 rem pause
 exit /B 0
