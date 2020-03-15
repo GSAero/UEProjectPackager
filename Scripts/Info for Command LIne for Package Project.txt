@@ -35,7 +35,7 @@ Information about params of command line:
 	FString Executable = TEXT("RunUAT.bat");
 #endif
 
-ATF (Android Texture Formats) (https://docs.unrealengine.com/en-us/Platforms/Android/Reference):
+ATF (Android Texture Formats) (https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/PackagingAndroidProject/index.html):
 - ATC
 - DXT
 - ETC1
