@@ -1,9 +1,9 @@
 # Project Packager for Unreal Engine 4
 
-List of bat-files for project packaging without using Unreal Editor using command line.
+List of batch files for project packaging without using Unreal Editor using command line.
 Analog of Project Launcher in Unreal Editor.
 Used UAT in command line with configurable params.
-This batchfiles may be run manual, or run by timer using scheduler.
+This batch files may be run manual, or run by timer using scheduler.
 
 ## Opportunities of package
 
@@ -31,6 +31,8 @@ Other options, see https://docs.unrealengine.com/en-US/Engine/Deployment/BuildOp
 * -package (This stage packages the project into a platform's native distribution format);
 * -build (This stage compiles the executeables for the selected platform);
 
+All options in "[EngineFolder]/Source/Programs/AutomationTool/AutomationUtils/ProjectParams.cs" (for UE 4.24 start from line 1103).
+
 ## Installation
 
 * copy all files and folders (without .gitignore/LICENSE/README.md files) into folder with your UE project;
@@ -44,7 +46,7 @@ Other options, see https://docs.unrealengine.com/en-US/Engine/Deployment/BuildOp
 
 ## Usage
 
-Run the desired bat-file and wait for the package to finish.
+Run the desired batch file and wait for the package to finish.
 
 ## Misc
 
