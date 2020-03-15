@@ -10,6 +10,7 @@ This batch files may be run manual, or run by timer using scheduler.
 * packaging for all platforms - Android, IOS, Win64, Win32, Mac, Linux, etc.
 * packaging any configuration - Development, Shipping, Debug, DebugGame, Test.
 * ability to use the value of the "For Distribution" flag" (see Project Settings -> Project -> Packaging -> Project - For Distribution).
+* for Android builds you can optionally specify the Android Texture Format.
 
 ## Limitations
 
