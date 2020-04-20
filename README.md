@@ -1,6 +1,6 @@
 # Project Packager for Unreal Engine 4
 
-List of batch files for project packaging without using Unreal Editor using command line.
+List of batch files for project packaging without using Unreal Editor.
 Analog of Project Launcher in Unreal Editor.
 Used UAT in command line with configurable params.
 This batch files may be run manual, or run by timer using scheduler.
@@ -14,25 +14,25 @@ This batch files may be run manual, or run by timer using scheduler.
 
 ## Limitations
 
-* tested only on Windows;
-* when packaging for macOS/iOS you need to select the certificate/provision you need in Project Setting;
+* tested only on Windows, but must work on other platforms;
+* when packaging for macOS/iOS you need to select the necessary/correct certificate and provision file in Project Setting;
 
 ## Project build settings by default
 
-* Full rebuild, option "-clean";
-* Creating compressed coocked packages, option "-compressed";
-* Does not cook editor content, option "-SkipCookingEditorContent";
-* Used pack files, option "-pak";
-* Packaging without crash reporter, if you need include crash reporter in game, add option "-CrashReporter" in line 73 after option "-build" in "Scripts/GameBuild_withParam.bat" file;
-* Packaging without debug files, if you need include debug files in game, remove option "-nodebuginfo" from line 73 in "Scripts/GameBuild_withParam.bat" file;
+* Full rebuild — option "-clean";
+* Creating compressed coocked packages — option "-compressed";
+* Does not cook editor content — option "-SkipCookingEditorContent";
+* Used pack files — option "-pak";
+* Packaging without crash reporter. If you need include crash reporter in game, add option "-CrashReporter" in line 73 after option "-build" in "Scripts/GameBuild_withParam.bat" file;
+* Packaging without debug files. If you need include debug files in game, remove option "-nodebuginfo" from line 73 in "Scripts/GameBuild_withParam.bat" file;
 
 Other options, see https://docs.unrealengine.com/en-US/Engine/Deployment/BuildOperations/index.html
-* -cook (This stage cooks content by executing the Editor in a special mode);
-* -stage (This stage copies the executables and content to a staging area; a standalone directory outside of the development directory);
-* -package (This stage packages the project into a platform's native distribution format);
-* -build (This stage compiles the executeables for the selected platform);
+* -cook (this stage cooks content by executing the Editor in a special mode);
+* -stage (this stage copies the executables and content to a staging area; a standalone directory outside of the development directory);
+* -package (this stage packages the project into a platform's native distribution format);
+* -build (this stage compiles the executeables for the selected platform);
 
-All options in "[EngineFolder]/Source/Programs/AutomationTool/AutomationUtils/ProjectParams.cs" (for UE 4.24 start from line 1103).
+For information on all options, see the "[EngineFolder]/Source/Programs/AutomationTool/AutomationUtils/ProjectParams.cs" (for UE 4.24 start from line 1103).
 
 ## Installation
 
@@ -47,8 +47,8 @@ All options in "[EngineFolder]/Source/Programs/AutomationTool/AutomationUtils/Pr
 
 ## Usage
 
-Run the desired batch file and wait for the package to finish.
+Run the desired batch file and wait for the packaging to finish.
 
 ## Misc
 
-see "Scripts/Info for Command LIne for Package Project.txt"
+Also see "Scripts/Info for Command LIne for Package Project.txt"
