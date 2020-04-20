@@ -2,7 +2,7 @@
 // Misc
 
 https://docs.unrealengine.com/en-us/Engine/Deployment/BuildOperations
-https://wiki.unrealengine.com/How_to_package_your_game_with_commands (probably outdated because it didn't work for me)
+https://www.ue4community.wiki/Legacy/How_to_package_your_game_with_commands (probably outdated because it didn't work for me)
 
 [Engine]\Source\Programs\UnrealBuildTool\Configuration\UEBuildTarget.cs
 platform=Win32
